@@ -14,15 +14,16 @@ While I agree that SVD is a plausible geometric heuristic to estimate the number
 
 I encourage the authors to better structure their justification and provide a more rigorous explanation for why SVD is suitable in this context, potentially by connecting the spectral behavior of similarity matrices with the clustering structure of unknown categories.
 
+**Q1**: **On the Motivation and Role of Optimal Similarity and Multi-Granularity Alignment._**
 **A1**: Thanks for your detailed comments.
-1. We sincerely apologize for the sign mistake in Eq. (1). The correct formulation is:
-> **Lemma 3.1.** The optimal similarity between $\boldsymbol{Z}^t$ and $\mathbf{P}$ is as follows:
+1. We sincerely apologize for the sign mistake in Eq. (1). The correct formulation is: 
+> **Lemma 3.1** The optimal similarity between $\boldsymbol{Z}^t$ and $\mathbf{P}$ is as follows:
 \[
-\boldsymbol{\gamma}^{*}=\arg\max_{\boldsymbol{\gamma}\in\Pi(\mu,\nu)}\{\sum_{i,j}\boldsymbol{\gamma}_{ij}\boldsymbol{C}^{\text{cosine}}_{ij} + \eta H(\boldsymbol{\gamma})\}
+    \boldsymbol{\gamma}^*=\arg\max_{\boldsymbol{\gamma}\in\Pi(\mu,\nu)} \sum_{i,j} \boldsymbol{\gamma}_{ij} C\_{ij}^{cosine} + \eta H(\boldsymbol{\gamma})
 \]
+	where $\boldsymbol{C}^{\text{cosine}}$ denotes the cosine similarity between $\boldsymbol{Z}^t$ and $\mathbf{P}$, and $\boldsymbol{\gamma}^{*}$ is the optimal coupling matrix. The value of $\boldsymbol{\gamma}^{*}_{ij}$ represents the similarity of $\boldsymbol{z}^t_i$ and $\mathbf{p}_j$. $\eta$ is a regularization coefficient, and $H(\boldsymbol{\gamma})$ denotes the entropy of $\boldsymbol{\gamma}$.
 
-
-This form is fully consistent with the “maximum-entropy regularization” in Sinkhorn OT [1], where the entropy term is positive. **High entropy helps prevent sparse solutions and overfitting to local structures, thereby improving the robustness of pseudo-labels and reducing the impact of noise.**
+which is consistent with the “maximum-entropy regularization” in Sinkhorn OT [1]. **High entropy helps prevent sparse solutions and overfitting to local structures**
 
 2. The motivations and complementary roles of the two components.
 - **Optimal Similarity** assigns pseudo-labels to target common samples and distinguishes unknown samples via confidence scores, which is more robust than cosine similarity in OSDA.
@@ -53,6 +54,7 @@ These components function at different stages:
 
 In summary, optimal similarity provides robust pseudo-labels resilient to unknown-class noise, while multi-granularity alignment enhances global and local feature separability. Their entropy settings serve distinct roles and jointly mitigate negative transfer for effective open-set adaptation.
 
+**Q2**: ***On the Use of SVD to Estimate the Number of Unknown Classes***
 **A2**: Thank you for your follow-up comment. We agree that simply stating “the singular values are more concentrated” is insufficient. Below we provide a concise justification linking spectral properties of the similarity matrix to the number of unknown classes.
 
 1. **Separability and Spectral Rank**
