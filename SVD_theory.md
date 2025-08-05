@@ -5,7 +5,7 @@ Let the feature matrix of unknown samples be $\boldsymbol{Z}\in \mathbb{R}^{N \t
 For $\boldsymbol{M}=\boldsymbol{Z}\boldsymbol{Z}^\top$, under high intra-class similarity and low inter-class similarity:
 - within-class variance ≪ between-class distance (class centers nearly orthogonal)
 - noise energy ≤ between-class energy
-$\boldsymbol{M} = \sum_{i=1}^{k} \lambda_i u_i u_i^\top + E,\quad \quad \|E\|_2 \le \delta$
+$\boldsymbol{M} = \sum\_{i=1}^{k} \lambda_i u_i u_i^\top + E,\quad \quad \|E\|_2 \le \delta$
 where $N_c$ and $\sigma_c^2$ are the sample count and within-class energy of class $c$, respectively, and $\delta$ bounds the noise. The first $k$ eigenvalues $\lambda_i$ are well separated from the remainder, creating a spectral gap. Thus, the number of dominant eigenvalues equals the number of unknown classes $k$.
 
 3. **Connection to Graph-Cut Theory: A Spectral-Clustering View.**
@@ -25,4 +25,5 @@ If $M=M_0+E$, where $M_0$ is the ideal block-diagonal matrix above and $\|E\|_2\
 $|\sigma_i(M)-\sigma_i(M_0)| \le\delta,\forall i$
 
 so the top $k$ singular values remain separated, reliably indicating the true class number even under perturbations.
+
 
